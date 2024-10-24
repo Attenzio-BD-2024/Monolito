@@ -1,0 +1,45 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environment folders
+venv/
+
+# Django stuff:
+*.log
+*.pot
+*.pyc
+*.sqlite3
+db.sqlite3
+
+# Local Django settings (optional, if you have a separate settings file for local development)
+local_settings.py
+
+# Django migrations
+*/migrations/*
+
+# PostgreSQL/PostGIS
+*.pgdata
+pgdata/
+*.sql
+*.psql
+
+# Media and Static files
+/media/
+/staticfiles/
+/static/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# VS Code config files (if you're using Visual Studio Code)
+.vscode/
+
+# Misc
+.DS_Store
+*.swp
+*.swo
