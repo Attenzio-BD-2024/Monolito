@@ -15,6 +15,13 @@ Cada vez que ustedes vayan a enviar un push, deben de primero actualizar el docu
     
 1. Clonen el proyecto al local.
 2. Ingresen a la carpeta `/backend`.
+3. Crear el entorno virtual 
+
+    - (Hacer esto la primera vez solamente)
+    ```bash
+    python -m venv
+    ```
+
 3. Activen el entorno virtual:
 
     - En **Windows**:
