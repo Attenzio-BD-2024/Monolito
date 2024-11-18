@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import NotFound from './components/NotFound';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { LayoutProvider, useLayout } from './context/AuthContext';
+import { routes } from './routes';
+import './styles/App.css';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <LayoutProvider>
+      <Router>
+        <AppRoutes />
+      </Router>
+    </LayoutProvider>
   );
-}
+};
+
+const AppRoutes = () => {
+  const { isAuthenticated } = useLayout();
+
+  return (
+    <Routes>
+      {routes.map(({ path, component: Component, layout: Layout, authRequired }, index) => (
+        <Route
+          key={index}
+          path={path}
+          element={
+            authRequired && !isAuthenticated ? (
+              <Navigate to="/login" />  // Redirige a Login si no está autenticado
+            ) : (
+              <Layout><Component /></Layout> // Muestra el componente con el layout adecuado
+            )
+          }
+        />
+      ))}
+      
+      {/* Ruta por defecto (cualquier otra no encontrada) */}
+      <Route
+        path="*"
+        element={<NotFound />}
+      />
+    </Routes>
+  );
+};
 
 export default App;
