@@ -19,19 +19,19 @@ Cada vez que ustedes vayan a enviar un push, deben de primero actualizar el docu
 
     - (Hacer esto la primera vez solamente)
     ```bash
-    python -m venv
+    python -m venv env
     ```
 
 3. Activen el entorno virtual:
 
     - En **Windows**:
     ```bash
-    venv/Script/activate
+    env/Script/activate o source env/Script/activate
     ```
 
     - En **Linux**:
     ```bash
-    source venv/bin/activate
+    source env/bin/activate
     ```
 
     Un entorno virtual se encarga de que todas las dependencias se instalen solamente en esa carpeta, y no en todos los proyectos locales de Python.
