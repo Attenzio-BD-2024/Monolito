@@ -1,10 +1,13 @@
-from rest_framework.urlpatterns import format_suffix_patterns
-from django.urls import re_path
+from django.urls import path
+from rest_framework.routers import DefaultRouter
+from django.urls import path, include
 
 from .views import *
 
-urlpatterns = [
-  re_path(r'$', ListCreateOptions.as_view(), name='create-list-options')
-]
+router = DefaultRouter()
+router.register(r'options', OptionsViewSet, basename='options')
+router.register(r'student_options',StudentOptionsViewSet, basename='student_options')
 
-urlpatterns = format_suffix_patterns(urlpatterns)
+urlpatterns = [
+  path('', include(router.urls))
+]

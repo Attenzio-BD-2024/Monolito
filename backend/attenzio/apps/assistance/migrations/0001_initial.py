@@ -14,10 +14,11 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='question',
+            name='assistance',
             fields=[
-                ('id_question', models.AutoField(primary_key=True, serialize=False)),
-                ('question', models.TextField(max_length=400)),
+                ('id_assistance', models.AutoField(primary_key=True, serialize=False)),
+                ('date_assistance', models.DateField()),
+                ('time_assistance', models.TimeField()),
                 ('id_session', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='session.session')),
             ],
         ),

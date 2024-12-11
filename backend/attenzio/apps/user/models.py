@@ -11,14 +11,14 @@ class user(models.Model):
         PROFESSOR = 'PR', _('Professor')
         MONITOR = 'MO', _('Monitor')
 
-    id_unique = models.IntegerField(primary_key=True)
+    id_unique = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
     lastname = models.CharField(max_length=100)
     email = models.EmailField()
     address = models.CharField(max_length=200)
     password = models.CharField(max_length=50)
     phone_number = models.CharField(max_length=10)
-    register = models.BinaryField() 
+    register = models.BinaryField(null=True) 
     rol = models.CharField( max_length=2, choices=role.choices, default=role.STUDENT)
 
     def __str__(self):
@@ -27,12 +27,11 @@ class user(models.Model):
 
 
 class course(models.Model):
-    id_course = models.IntegerField(primary_key=True)
+    id_course = models.AutoField(primary_key=True)
     course_name = models.CharField(max_length=50)
     students = models.ManyToManyField(
         user, 
         related_name="courses", 
-        limit_choices_to={"role": user.role.STUDENT},  
         blank=True
     )
 

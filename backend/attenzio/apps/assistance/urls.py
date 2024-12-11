@@ -1,10 +1,13 @@
-from rest_framework.urlpatterns import format_suffix_patterns
-from django.urls import re_path
+from django.urls import include
+from rest_framework.routers import DefaultRouter
+from django.urls import path
 
 from .views import *
 
+router = DefaultRouter()
+router.register(r'assistance', AssistanceViewSet, basename='assistance')
+
 urlpatterns = [
-  re_path(r'$', ListCreateAssistances.as_view(), name='create-list-assistences')
+  path('', include(router.urls))
 ]
 
-urlpatterns = format_suffix_patterns(urlpatterns)

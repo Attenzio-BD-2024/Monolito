@@ -1,18 +1,12 @@
-from rest_framework import generics, status
-from rest_framework.response import Response
+from rest_framework import viewsets
+from .models import options, student_options
+from .serializer import OptionsSerializer, StudentOptionsSerializer
 
-from .models import options
-from .serializer import OptionsSerializer
-
-class ListCreateOptions(generics.ListAPIView):
+class OptionsViewSet(viewsets.ModelViewSet):
   queryset = options.objects.all()
   serializer_class = OptionsSerializer
   
-  def post(self, request, *args, **kwargs):
-    data= request.data
-    serr = OptionsSerializer(data=data)
-    if (serr.is_valid()):
-      serr.save()
-      return Response(serr.validated_data, status=status.HTTP_200_OK)  
-    
-    return Response(status=status.HTTP_400_BAD_REQUEST)
+class StudentOptionsViewSet(viewsets.ModelViewSet):
+  queryset = student_options.objects.all()
+  serializer_class = StudentOptionsSerializer
+  

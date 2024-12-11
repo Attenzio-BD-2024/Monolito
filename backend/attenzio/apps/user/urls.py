@@ -1,11 +1,14 @@
-from rest_framework.urlpatterns import format_suffix_patterns
-from django.urls import re_path
+from django.urls import path
+from rest_framework.routers import DefaultRouter
+from django.urls import path, include
 
 from .views import *
 
+router = DefaultRouter()
+router.register(r'user', UserViewSet, basename='user')
+router.register(r'course', courseViewSet, basename='course')
+
 urlpatterns = [
-  re_path(r'$', ListCreateUsers.as_view(), name='create-list-users'),
-  re_path(r'$', ListCreateCourses.as_view(), name='create-list-courses')
+  path('', include(router.urls))
 ]
 
-urlpatterns = format_suffix_patterns(urlpatterns)

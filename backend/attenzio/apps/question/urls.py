@@ -1,10 +1,12 @@
-from rest_framework.urlpatterns import format_suffix_patterns
-from django.urls import re_path
+from django.urls import path
+from rest_framework.routers import DefaultRouter
+from django.urls import path, include
 
 from .views import *
 
-urlpatterns = [
-  re_path(r'$', ListCreateQuestions.as_view(), name='create-list-questions')
-]
+router = DefaultRouter()
+router.register(r'question', QuestionViewSet, basename='question')
 
-urlpatterns = format_suffix_patterns(urlpatterns)
+urlpatterns = [
+  path('', include(router.urls))
+]

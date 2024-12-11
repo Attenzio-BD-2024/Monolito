@@ -44,3 +44,6 @@ dmypy.json
 .DS_Store
 *.swp
 *.swo
+
+# environment variables
+.env
