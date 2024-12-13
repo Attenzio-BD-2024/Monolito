@@ -5,6 +5,7 @@ __pycache__/
 *.pyd
 
 # Virtual environment folders
+env/
 venv/
 
 # Django stuff:
@@ -44,4 +45,5 @@ dmypy.json
 *.swp
 *.swo
 
+# environment variables
 .env
