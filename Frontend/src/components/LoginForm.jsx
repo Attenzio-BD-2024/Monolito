@@ -53,11 +53,6 @@ const LoginForm = () => {
         </Button>
       </Form.Item>
 
-      <Flex justify="center">
-        ¿Aún no tienes cuenta?&nbsp;
-        <Link href="/register">Registrate</Link>
-      </Flex>
-
     </Form>
   );
 };

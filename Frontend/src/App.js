@@ -25,15 +25,17 @@ const AppRoutes = () => {
           key={index}
           path={path}
           element={
-            authRequired && !isAuthenticated ? (
-              <Navigate to="/login" />  // Redirige a Login si no está autenticado
-            ) : (
-              <Layout><Component /></Layout> // Muestra el componente con el layout adecuado
-            )
+            authRequired
+              ? (isAuthenticated
+                ? <Layout><Component /></Layout> // Caso 3: Ruta autenticada y el usuario está autenticado
+                : <Navigate to="/login" />) // Caso 1: Ruta autenticada y el usuario no está autenticado
+              : (isAuthenticated
+                ? <Navigate to="/" /> // Caso 2: Ruta no autenticada y el usuario está autenticado
+                : <Layout><Component /></Layout>) // Caso 3: Ruta no autenticada y el usuario no está autenticado
           }
         />
       ))}
-      
+
       {/* Ruta por defecto (cualquier otra no encontrada) */}
       <Route
         path="*"

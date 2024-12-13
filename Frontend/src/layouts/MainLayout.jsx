@@ -1,13 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBell, faCircleInfo, faGear, faHouse, faList, faRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons'
-
-import { Button, Layout, Menu } from 'antd';
-
 import { library } from '@fortawesome/fontawesome-svg-core';
 import logo from '../assets/transparent_logo.png'
-
+import { Button, Layout, Menu } from 'antd';
+import { useLayout } from '../context/AuthContext';
 const { Content, Sider } = Layout;
+
+function getItem(label, key, icon, children) {
+    return { key, icon, children, label }
+}
 
 const siderStyle = {
     overflow: 'auto',
@@ -17,23 +20,20 @@ const siderStyle = {
     bottom: 0,
 };
 
-function getItem(label, key, icon, children) {
-    return { key, icon, children, label }
-}
-
 library.add(faHouse, faUser, faList, faBell, faGear, faCircleInfo, faRightFromBracket)
 
-const items = [
-    getItem('Home', '1', <FontAwesomeIcon icon={faHouse} className='m-0' />),
-    getItem('Perfil', '2', <FontAwesomeIcon icon={faUser} />),
-    getItem('Cursos', '3', <FontAwesomeIcon icon={faList} />),
-    getItem('Notificaciones', '4', <FontAwesomeIcon icon={faBell} />),
-    getItem('Configuracion', '5', <FontAwesomeIcon icon={faGear} />),
-    getItem('Info', '6', <FontAwesomeIcon icon={faCircleInfo} />),
-    getItem('Cerrar Sesión', '7', <FontAwesomeIcon icon={faRightFromBracket} />)
-];
-
 const MainLayout = ({ children }) => {
+    const { logoutUser } = useLayout()
+
+    const items = [
+        getItem(<Link to="/">Home</Link>, '1', <FontAwesomeIcon icon={faHouse} className='m-0' />),
+        getItem(<Link to="/profile">Perfil</Link>, '2', <FontAwesomeIcon icon={faUser} />),
+        getItem(<Link to="/courses">Cursos</Link>, '3', <FontAwesomeIcon icon={faList} />),
+        getItem('Notificaciones', '4', <FontAwesomeIcon icon={faBell} />),
+        getItem('Configuracion', '5', <FontAwesomeIcon icon={faGear} />),
+        getItem('Info', '6', <FontAwesomeIcon icon={faCircleInfo} />),
+    ]
+
     return (
         <Layout style={{ minHeight: '100vh' }}>
             <Sider
@@ -47,6 +47,16 @@ const MainLayout = ({ children }) => {
                 <Menu
                     className="bg-[transparent]"
                     items={items} />
+                <div className='w-[80px] p-2'>
+                    <Button
+                        block
+                        type='primary'
+                        className='bg-[#333333] text-white'
+                        onClick={logoutUser}
+                        >
+                        <FontAwesomeIcon icon={faRightFromBracket} />
+                    </Button>
+                </div>
             </Sider>
             <Layout className='ms-[80px]'>
                 <Content className='px-8 py-8' >
