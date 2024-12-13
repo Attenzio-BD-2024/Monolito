@@ -4,7 +4,7 @@ import React, { createContext, useContext, useState } from 'react';
 const LayoutContext = createContext();
 
 export const LayoutProvider = ({ children }) => {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isAuthenticated, setIsAuthenticated] = useState(true);
 
     return (
         <LayoutContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>
@@ -13,6 +13,12 @@ export const LayoutProvider = ({ children }) => {
                     token: {
                         colorPrimary: '#FF7700',
                         colorLink: '#FF7700',
+                    },
+                    components: {
+                        Layout: {
+                            bodyBg: '#FFFFFF',
+                            siderBg: "#D9D9D9",
+                        }
                     }
                 }}>
                 {children}

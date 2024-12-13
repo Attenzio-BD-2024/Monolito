@@ -1,72 +1,56 @@
-import React, { useState } from 'react';
-import {
-    DesktopOutlined,
-    FileOutlined,
-    PieChartOutlined,
-    TeamOutlined,
-    UserOutlined,
-} from '@ant-design/icons';
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBell, faCircleInfo, faGear, faHouse, faList, faRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons'
 
-import { Breadcrumb, Layout, Menu } from 'antd';
-const { Header, Content, Sider } = Layout;
+import { Button, Layout, Menu } from 'antd';
+
+import { library } from '@fortawesome/fontawesome-svg-core';
+import logo from '../assets/transparent_logo.png'
+
+const { Content, Sider } = Layout;
+
+const siderStyle = {
+    overflow: 'auto',
+    height: '100vh',
+    position: 'fixed',
+    top: 0,
+    bottom: 0,
+};
 
 function getItem(label, key, icon, children) {
-    return {
-        key,
-        icon,
-        children,
-        label,
-    };
+    return { key, icon, children, label }
 }
 
+library.add(faHouse, faUser, faList, faBell, faGear, faCircleInfo, faRightFromBracket)
+
 const items = [
-    getItem('Option 1', '1', <PieChartOutlined />),
-    getItem('Option 2', '2', <DesktopOutlined />),
-    getItem('User', 'sub1', <UserOutlined />, [
-        getItem('Tom', '3'),
-        getItem('Bill', '4'),
-        getItem('Alex', '5'),
-    ]),
-    getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
-    getItem('Files', '9', <FileOutlined />),
+    getItem('Home', '1', <FontAwesomeIcon icon={faHouse} className='m-0' />),
+    getItem('Perfil', '2', <FontAwesomeIcon icon={faUser} />),
+    getItem('Cursos', '3', <FontAwesomeIcon icon={faList} />),
+    getItem('Notificaciones', '4', <FontAwesomeIcon icon={faBell} />),
+    getItem('Configuracion', '5', <FontAwesomeIcon icon={faGear} />),
+    getItem('Info', '6', <FontAwesomeIcon icon={faCircleInfo} />),
+    getItem('Cerrar Sesión', '7', <FontAwesomeIcon icon={faRightFromBracket} />)
 ];
 
 const MainLayout = ({ children }) => {
-    const [collapsed, setCollapsed] = useState(false);
-
     return (
         <Layout style={{ minHeight: '100vh' }}>
-            <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
-                <div className="demo-logo-vertical" />
-                <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
+            <Sider
+                collapsed
+                style={siderStyle}
+            >
+                <img
+                    src={logo}
+                    alt='logo'
+                    className='p-4' />
+                <Menu
+                    className="bg-[transparent]"
+                    items={items} />
             </Sider>
-            <Layout>
-                <Header
-                    style={{
-                        padding: 0,
-                    }}
-                />
-                <Content
-                    style={{
-                        margin: '0 16px',
-                    }}
-                >
-                    <Breadcrumb
-                        style={{
-                            margin: '16px 0',
-                        }}
-                    >
-                        <Breadcrumb.Item>User</Breadcrumb.Item>
-                        <Breadcrumb.Item>Bill</Breadcrumb.Item>
-                    </Breadcrumb>
-                    <div
-                        style={{
-                            padding: 24,
-                            minHeight: 360,
-                        }}
-                    >
-                        {children}
-                    </div>
+            <Layout className='ms-[80px]'>
+                <Content className='px-8 py-8' >
+                    {children}
                 </Content>
             </Layout>
         </Layout>

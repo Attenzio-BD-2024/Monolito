@@ -4,8 +4,8 @@ import Link from 'antd/es/typography/Link';
 
 const LoginForm = () => {
   const onFinish = (values) => {
-    console.log('Received values of form: ', values);
-  };
+    console.log('Received values of form: ', values)
+  }
   return (
     <Form
       name="login"
