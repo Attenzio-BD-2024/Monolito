@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
   },
   loginButton: {
-    backgroundColor: '#007BFF',
+    backgroundColor: '#FF6C00',
     paddingVertical: 15,
     borderRadius: 8,
     width: '100%',
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
   },
   loginButtonText: {
     fontSize: 16,
-    color: '#fff',
+    color: '#000',
     fontWeight: 'bold',
   },
   registerText: {
