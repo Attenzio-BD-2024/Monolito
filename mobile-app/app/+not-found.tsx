@@ -1,5 +1,5 @@
 import { useRouter, Stack } from 'expo-router';
-import { NavigationContainer } from '@react-navigation/native';
+//import { NavigationContainer } from '@react-navigation/native';
 import { StyleSheet } from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
@@ -8,7 +8,7 @@ export default function NotFoundScreen() {
   const router = useRouter();
 
   const navigateHome = () => {
-    router.push('/App');
+    router.push('/Bienvenida');
   };
 
   return (

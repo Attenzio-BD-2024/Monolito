@@ -12,28 +12,32 @@ import { useColorScheme } from '@/hooks/useColorScheme';
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
+  const colorScheme = useColorScheme();  // Usar el esquema de color que defines en tu hook
   const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),  // Carga de fuentes
   });
 
   useEffect(() => {
     if (loaded) {
-      SplashScreen.hideAsync();
+      SplashScreen.hideAsync();  // Ocultar la pantalla de carga cuando se haya cargado todo
     }
   }, [loaded]);
 
+  // Si la fuente aún no está cargada, no se muestra nada
   if (!loaded) {
     return null;
   }
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+      {/* Usamos el stack navigator de expo-router */}
       <Stack>
+        {/* Pantalla principal que maneja las rutas definidas */}
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        {/* Pantalla de error para manejar rutas no encontradas */}
         <Stack.Screen name="+not-found" />
       </Stack>
-      <StatusBar style="auto" />
+      <StatusBar style="auto" />  {/* Asegura que el estatus de la barra de estado sea adecuado */}
     </ThemeProvider>
   );
 }

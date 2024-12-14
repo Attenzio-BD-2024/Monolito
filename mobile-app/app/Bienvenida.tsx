@@ -1,11 +1,12 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
-import { useNavigate } from 'react-router-native'; // Importar el hook useNavigate
+import { useRouter } from 'expo-router'; // Importa el hook useRouter de expo-router
 
-const smallImage = require('../assets/images/small.png'); // Importa tu imagen
+// Asegúrate de que la ruta de la imagen sea correcta
+const smallImage = require('../assets/images/small.png'); // Importa la imagen correctamente
 
 const Bienvenida = () => {
-  const navigate = useNavigate(); // Hook para manejar la navegación
+  const router = useRouter(); // Usamos el hook useRouter de expo-router
 
   return (
     <View style={styles.container}>
@@ -28,14 +29,14 @@ const Bienvenida = () => {
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={styles.registerButton}
-          onPress={() => navigate('/register')} // Navega a la página de registro
+          onPress={() => router.push('/Register')} // Navega a la ruta de registro usando expo-router
         >
           <Text style={styles.registerButtonText}>Registrarse</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.loginButton}
-          onPress={() => navigate('/login')} // Navega a la página de inicio de sesión
+          onPress={() => router.push('/Login')} // Navega a la ruta de inicio de sesión usando expo-router
         >
           <Text style={styles.loginButtonText}>Iniciar Sesión</Text>
         </TouchableOpacity>
@@ -53,7 +54,7 @@ const styles = StyleSheet.create({
   image: {
     width: '100%',
     height: 200,
-    resizeMode: 'cover',
+    resizeMode: 'cover',  // Ajusta la imagen para cubrir el área disponible
   },
   textContainer: {
     marginTop: 20,

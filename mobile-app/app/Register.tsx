@@ -46,7 +46,7 @@ const Register = () => {
       </TouchableOpacity>
       <Text style={styles.loginText}>
         ¿Ya tienes una cuenta?{' '}
-        <Text style={styles.loginLink} onPress={() => router.push('/login')}>
+        <Text style={styles.loginLink} onPress={() => router.push('/Login')}>
           Inicia Sesión
         </Text>
       </Text>

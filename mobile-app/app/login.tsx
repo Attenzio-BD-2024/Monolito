@@ -1,16 +1,22 @@
 import React, { useState } from 'react';
 import { View, TextInput, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
-import { useRouter } from 'expo-router'; // Importar useRouter para la navegación
+import { useRouter } from 'expo-router'; // Importar useRouter de expo-router
 
 const image = require('../assets/images/transparent_logo.png');
 
 const Login = () => {
-  const router = useRouter(); // Crear instancia del router
+  const router = useRouter(); // Usamos el hook useRouter de expo-router
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
-    alert(`Email: ${email}, Password: ${password}`);
+    // Aquí deberías hacer la validación real de login
+    if (email === 'julieta@gmail.com' && password === '12345') {
+      // Si el login es exitoso, redirigir al escáner de QR
+      router.push('/QRScanner');  // Redirige a la pantalla QRScanner usando expo-router
+    } else {
+      alert('Credenciales incorrectas');
+    }
   };
 
   return (
@@ -39,7 +45,7 @@ const Login = () => {
       </TouchableOpacity>
       <Text style={styles.registerText}>
         ¿Aún no tienes cuenta?{' '}
-        <Text style={styles.registerLink} onPress={() => router.push('/Register')}>
+        <Text style={styles.registerLink} onPress={() => router.push('/Register')}>  {/* Cambiar a router.push */}
           Regístrate
         </Text>
       </Text>
